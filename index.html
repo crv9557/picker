@@ -3,44 +3,51 @@
 	Brian Capouch
 	4 February 2015
 
+// Connor Ring Dice Roller Conversion
+// Edited 10 February 2015
+// Converted all names to sides, all courses to types of dice, and renamed some variables and name of the application at work to fit the "dice roll" theme.
+
 -->
 
   <!-- Use jQuery from a CDN -->                      
   <script type="text/javascript" src="//code.jquery.com/jquery-1.11.1.min.js"></script>
-
-    <title>Pick-a-kid Chooser</title>
+//Slight name change
+    <title>Pick-a-Dice Chooser</title>
 </head>
 <body>
-    <h3>CS Student Random Picker</h3>
+    <h3>CS Dice Rolling Picker</h3>
     <div></div>
-    <input type="button" onclick="chooseOne('cmp237')" value="CMP237"/>
-    <input type="button" onclick="chooseOne('cmp344')" value="CMP344"/>
-    <input type="button" onClick="chooseOne('cmp341')" value="CMP341"/>
-    <input type="button" onclick="chooseOne('cmp112')" value="CMP112"/>
+    //Changed the names of the buttons and fixed the onclick to react to its active functions
+    <input type="button" onclick="chooseOne("4-Side")" value="4-Side"/>
+    <input type="button" onclick="chooseOne("5-Side")" value="5-Side"/>
+    <input type="button" onClick="chooseOne("6-Side")" value="6-Side"/>
+    <input type="button" onclick="chooseOne("8-Side")" value="8-Side"/>
     <script>
     // Brian Capouch, ready to retire the old hat
-    // Choose a random student from a given class	
+    // Choose a dice and roll it to see what side you get	
 
-    // Course rosters object
+    // Now represents dice
     // Note: It's an array of objects, each of which is a map
-    //		and the value for each map is an array of names
-
-    var courses = { "cmp237": ['Craig Austgen','Daniel Davis','Benjamin Davisson','William Decker','Zachary Dickinson','Katie Harold','Eric Heinzman','Phillip Hofer','Troy Key','Andrew Klump','Kyle Lowtharp','Collin Mullis','Gabriel Perez','Ryan Postma','Kevin Regner','Andrew Ribicki','Connor Ring','Nathan Samano','Griffin Scott','Jared Smith'], "cmp112": ['Thaddeus Albert','Dan Amador','Bruce Anderson','Zachary Aring','Benjamin Davisson','Jace Horner','Carl Jones','Kyle Lowtharp','Declan McCarron','Collin Mullis','Yemi Ogunbameru','Andrew Ribicki','Christian Sexton','Houston Shimala','Ryan Slipher','Jared Smith','Ashlee Troop'], "cmp344": ['Craig Austgen','Daniel Davis','Dylan Gainey','Lucas Grube','Eric Heinzman','Katelyn Herre','Phillip Hofer','Andrew Klump','Ryan Postma','Nathan Samano','Danilo Zekovic'], "cmp341": ['Craig Austgen','Lucas Grube','Eric Heinzman','Phillip Hofer','Nathan Samano','Danilo Zekovic']}
+    //		and the value for each map is an array of names ("sides")
+var dice ={ "4-Side": ['Side 1', 'Side 2', 'Side 3', 'Side 4'],
+    	    "5-Side": ['Side 1', 'Side 2', 'Side 3', 'Side 4', 'Side 5'],
+    	    "6-Side": ['Side 1', 'Side 2', 'Side 3', 'Side 4', 'Side 5', 'Side 6'],
+	    "8-Side": ['Side 1', 'Side 2', 'Side 3', 'Side 4', 'Side 5', 'Side 6', 'Side 7', 'Side 8']};
  
 
-    function chooseOne(course) {
+    function chooseOne(sides) {
 
       // Choose appropriate element from courses array
-      var thisClass = courses[course];
+      var thisDie = dice[sides];
 
       // We'll choose one of n; this sets n
-      var n = thisClass.length;
+      var n = thisDie.length;
 
       // Pick one at random
-      var which = Math.floor(Math.random() * n);
+      var roll = Math.floor(Math.random() * n);
 
       // Set string with value of result
-      var result = 'Chosen: ' + thisClass[which];
+      var result = 'Chosen: ' + thisDie[roll];
 
       // Clear out the div, and then fill it with fresh
       // This is the wonderful, invisible work of jQuery
